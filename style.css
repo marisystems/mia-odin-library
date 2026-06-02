@@ -1,5 +1,65 @@
+@import url(./font/stylesheet.css);
+
+:root {
+    --bg-color: #5a586b;
+    --text-color: #ddd9d9;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    font-family: "Akira Expanded";
+    text-align: center;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    background: #5a586b;
+    color: #ddd9d9;
+    height: 100vh;
+    padding: 50px 200px;
+    padding-top: 10px;
+    gap: 20px;  
+}
+
+.upper,
+.bottom {
+    background: #9f9bbd65;
+    border-radius: 10px;
+}
+
+.upper {
+    display: flex;
+    align-items: center;
+    height: 35vh;
+    padding: 20px 30px;
+}
+
+.cover {
+    width: 120px;
+    height: 180px;
+    background: #e5e0e0cc;
+    border-radius: 8px;
+}
+
+.bottom {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr ));
+    row-gap: 50px;
+    column-gap: 100px;
+    height: 60vh;
+    padding: 15px 30px;
+    overflow-y: auto;
+}
+
+.book-card {
+    width: 120px;
+    height: 180px;
+    border-radius: 8px;
+    background: #e5e5e5a6;
 }
