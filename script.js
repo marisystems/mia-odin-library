@@ -30,4 +30,18 @@ addBookToLibrary("Amogus", "sus", 210, true)
 addBookToLibrary("Amogus", "sus", 210, true)
 
 console.log(myLibrary[0].info())
+console.log(myLibrary[0].id);
 
+let addBook = document.querySelector(".add-book");
+let addModal = document.querySelector(".add-modal");
+let closeModal = document.querySelector(".close-modal");
+
+
+// Open the add book modal
+addBook.addEventListener("click", () => {
+    addModal.showModal();
+});
+// Close the add book modal
+closeModal.addEventListener("click", () => {
+    addModal.close()
+})

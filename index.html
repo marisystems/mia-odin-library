@@ -9,29 +9,93 @@
 
 </head>
 <body>
+    <dialog class="add-modal">
+        <form>
+            <div class="entry">
+                <label>Title</label>
+                <input type="text">
+            </div>
+            <div class="entry">
+                <label>Author</label>
+                <input type="text">
+            </div>
+            <div class="entry">
+                <label>Pages</label>
+                <input type="number">
+            </div>
+            <div class="entry" id="entry-read">
+                <label for="">Read</label>
+                <div class="read-radio">
+                    <input class="radio-yes"
+                    type="radio"
+                    name="book-radio"
+                    id="yes"
+                    value="read">
+
+                    <input class="radio-no"
+                    type="radio"
+                    name="book-radio"
+                    id="no"
+                    value="not-read">
+                </div>
+            </div>
+        </form>
+
+        <div class="submit-row">
+            <img src="./icons/book-icon-black.svg" 
+            alt=""
+            width="35px">
+            <button class="close-modal">Submit</button>
+        </div>
+    </dialog>
+
     <div class="layout">
         <h1>Mia Bookshelf</h1>
         <div class="upper">
             <div class="cover"></div>
-            <div class="book-info"></div>
-            <button class="add-book"></button>
+            <div class="book-info">
+                <p>Title:</p>
+                <p>Author:</p>
+                <p>Pages:</p>
+                <p>Read:</p>
+            </div>
+            <button class="add-book">+</button>
         </div>
+        
         <div class="bottom">
-            <div class="book-card"></div>
-            <div class="book-card"></div>
-            <div class="book-card"></div>
-            <div class="book-card"></div>
-            <div class="book-card"></div>
-            <div class="book-card"></div>
-            <div class="book-card"></div>
-            <div class="book-card"></div>
-            <div class="book-card"></div>
-            <div class="book-card"></div>
-            <div class="book-card"></div>
-            <div class="book-card"></div>
-            <div class="book-card"></div>
-            <div class="book-card"></div>
-
+            <div class="book-card-wrapper">
+                <div class="book-card"></div>
+                <p>Book title here</p>
+            </div>
+            <div class="book-card-wrapper">
+                <div class="book-card"></div>
+                <p>Book title here</p>
+            </div>
+            <div class="book-card-wrapper">
+                <div class="book-card"></div>
+                <p>Book title here</p>
+            </div>
+            <div class="book-card-wrapper">
+                <div class="book-card"></div>
+                <p>Book title here</p>
+            </div>
+            <div class="book-card-wrapper">
+                <div class="book-card"></div>
+                <p>Book title here</p>
+            </div>
+            <div class="book-card-wrapper">
+                <div class="book-card"></div>
+                <p>Book title here</p>
+            </div>
+            <div class="book-card-wrapper">
+                <div class="book-card"></div>
+                <p>Book title here</p>
+            </div>
+            <div class="book-card-wrapper">
+                <div class="book-card"></div>
+                <p>Book title here</p>
+            </div>
+            
         </div>
     </div>
 </body>

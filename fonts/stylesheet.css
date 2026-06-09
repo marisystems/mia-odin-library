@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Gothica';
+    src: url('Gothica-Bold.woff2') format('woff2'),
+        url('Gothica-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gothica';
+    src: url('Gothica-BoldOblique.woff2') format('woff2'),
+        url('Gothica-BoldOblique.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gothica';
+    src: url('Gothica-Book.woff2') format('woff2'),
+        url('Gothica-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gothica';
+    src: url('Gothica-BookOblique.woff2') format('woff2'),
+        url('Gothica-BookOblique.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
