@@ -11,24 +11,22 @@
 <body>
     <dialog class="add-modal">
         <form id="add-book-form">
+
             <div class="entry">
                 <label for="title">Title</label>
-                <input type="text" 
-                id="title"
-                value="Placeholde Ttile">
+                <input type="text" id="title" required>
             </div>
+
             <div class="entry">
                 <label for="author">Author</label>
-                <input type="text" 
-                id="author"
-                value="Placeholde Author">
+                <input type="text" id="author" required>
             </div>
+
             <div class="entry">
                 <label for="pages">Pages</label>
-                <input type="number" 
-                id="pages"
-                value="210">
+                <input type="number" id="pages" required>
             </div>
+
             <div class="entry" id="entry-read">
                 <label for="radio-yes">Read</label>
                 <div class="read-radio">
@@ -37,7 +35,8 @@
                     type="radio"
                     name="book-radio"
                     id="radio-yes"
-                    value="read">
+                    value="read"
+                    required>
 
                     <input class="radio-no"
                     type="radio"
@@ -47,18 +46,20 @@
 
                 </div>
             </div>
+
             <div class="entry">
                 <label for="cover-img">Upload cover</label>
                 <input type="file" name="cover" id="cover-img">
             </div>
-        </form>
 
-        <div class="submit-row">
-            <img src="./icons/book-icon-black.svg" 
-            alt=""
-            width="35px">
-            <button class="close-modal">Submit</button>
-        </div>
+            <div class="submit-row">
+                <img src="./icons/book-icon-black.svg" 
+                alt=""
+                width="35px">
+                <button class="close-modal">Submit</button>
+            </div>
+
+        </form>
     </dialog>
 
     <div class="layout">

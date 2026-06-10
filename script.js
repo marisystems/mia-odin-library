@@ -18,7 +18,9 @@ function Book(title, author, pages, read, cover) {
 
 function addBookToLibrary(title, author, pages, read, cover) {
     let book = new Book(title, author, pages, read, cover);
-    myLibrary.push(book);
+    if (title !== "") {
+        myLibrary.push(book);
+    }
 }
 
 function getDatafromForm() {
@@ -31,6 +33,10 @@ function getDatafromForm() {
     let read = document.querySelector("#radio-yes").checked;
 
     addBookToLibrary(title, author, pages, read, cover);
+}
+
+function clearForm() {
+
 }
 
 // Add function to iterate over books in array and display
@@ -61,7 +67,6 @@ addBookToLibrary("Fahrenheit 451", "sus", 210, true)
 addBookToLibrary("Some cool book", "sus", 210, true)
 
 let bookGrid = document.querySelector(".bottom")
-
 displayBooks(myLibrary)
 
 // Modal
@@ -76,8 +81,20 @@ addBook.addEventListener("click", () => {
 });
 // Close the add book modal
 closeModal.addEventListener("click", (e) => {
-    addModal.close();
+    
+    e.preventDefault();
+    let form = document.querySelector("#add-book-form");
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return
+    }
+
+    // Extract info and update
     getDatafromForm();
+    displayBooks(myLibrary);
+
+    // Clear the fields after getting the info
+    form.reset();
     console.log(myLibrary)
 })
 
