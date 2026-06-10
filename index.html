@@ -10,34 +10,40 @@
 </head>
 <body>
     <dialog class="add-modal">
-        <form>
+        <form id="add-book-form">
             <div class="entry">
-                <label>Title</label>
-                <input type="text">
+                <label for="title">Title</label>
+                <input type="text" id="title">
             </div>
             <div class="entry">
-                <label>Author</label>
-                <input type="text">
+                <label for="author">Author</label>
+                <input type="text" id="author">
             </div>
             <div class="entry">
-                <label>Pages</label>
-                <input type="number">
+                <label for="pages">Pages</label>
+                <input type="number" id="pages">
             </div>
             <div class="entry" id="entry-read">
-                <label for="">Read</label>
+                <label for="radio-yes">Read</label>
                 <div class="read-radio">
+
                     <input class="radio-yes"
                     type="radio"
                     name="book-radio"
-                    id="yes"
+                    id="radio-yes"
                     value="read">
 
                     <input class="radio-no"
                     type="radio"
                     name="book-radio"
-                    id="no"
+                    id="radio-no"
                     value="not-read">
+
                 </div>
+            </div>
+            <div>
+                <label for="">Upload cover</label>
+                <input type="file" src="" alt="">
             </div>
         </form>
 
@@ -49,6 +55,8 @@
         </div>
     </dialog>
 
+    
+
     <div class="layout">
         <h1>Mia Bookshelf</h1>
         <div class="upper">
@@ -59,43 +67,14 @@
                 <p>Pages:</p>
                 <p>Read:</p>
             </div>
-            <button class="add-book">+</button>
+            <button class="add-book">
+                <img src="./icons/add.svg" alt=""
+                width="35px">
+            </button>
         </div>
         
+        <!-- Books will be added with Javascript -->
         <div class="bottom">
-            <div class="book-card-wrapper">
-                <div class="book-card"></div>
-                <p>Book title here</p>
-            </div>
-            <div class="book-card-wrapper">
-                <div class="book-card"></div>
-                <p>Book title here</p>
-            </div>
-            <div class="book-card-wrapper">
-                <div class="book-card"></div>
-                <p>Book title here</p>
-            </div>
-            <div class="book-card-wrapper">
-                <div class="book-card"></div>
-                <p>Book title here</p>
-            </div>
-            <div class="book-card-wrapper">
-                <div class="book-card"></div>
-                <p>Book title here</p>
-            </div>
-            <div class="book-card-wrapper">
-                <div class="book-card"></div>
-                <p>Book title here</p>
-            </div>
-            <div class="book-card-wrapper">
-                <div class="book-card"></div>
-                <p>Book title here</p>
-            </div>
-            <div class="book-card-wrapper">
-                <div class="book-card"></div>
-                <p>Book title here</p>
-            </div>
-            
         </div>
     </div>
 </body>

@@ -1,12 +1,20 @@
 @import url(./fonts/stylesheet.css);
 
 :root {
-    --bg-color: #5a586b;
+    --primary-color: #080614;
+    --secondary-color: #efe4e4;
+    --secondary-color-alt: #2e2828;
+    --accent-color : #e4ad47;
+    --accent-color2: #e5e5e5a6;
     --bg-elements: #e5e5e5a6;
-    --text-color: #ddd9d9;
-    --bg-card: #e5e5e5a6;
     --bg-sections: #2c2b35ea;
-    --text-color-alt: #1c1b1b;
+    --bg-card: #e5e5e5a6;
+
+    --ff: "Arial";
+    --ff-big: 32px;
+    --ff-medium: 18px;
+    --ff-small: 12px;
+    
 }
 
 * {
@@ -15,30 +23,29 @@
     box-sizing: border-box;
 }
 
-body {
-    text-align: center;
+h1 {
+    font-size: var(--ff-big);
 }
 
-h1 {
-    font-family: Gothica;
+body {
+    font-family: var(--ff);
+    font-size: var(--ff-medium);
+    text-align: center;
 }
 
 .layout {
     display: flex;
     flex-direction: column;
-    background: #5a586b;
-    color: #ddd9d9;
+    color: var(--secondary-color);
     height: 100vh;
-    padding: 50px 200px;
-    padding-top: 10px;
-    padding-bottom: 15px;
+    padding: 15px 200px 15px 200px;
     gap: 20px;  
-
-    background-color: #11111c;
+    background-color: var(--primary-color);
+    /* Pattern background */
     opacity: .8;
     background-image: 
-        radial-gradient(circle, #cacae021 1.2px, transparent 1.2px);
-    background-size: 15px 15px;
+        radial-gradient(circle, #b9b9ca39 1.2px, transparent 1.2px);
+    background-size: 25px 25px;
 }
 
 .upper,
@@ -66,8 +73,7 @@ h1 {
 .book-info {
     text-align: start;
     padding: 10px 30px;
-    color: var(--text-color-alt);
-    font-size: 24px;
+    color: var(--secondary-color-alt);
     line-height: 2.3rem;
     width: 70%;
     height: 180px;
@@ -78,7 +84,6 @@ h1 {
 
 .add-book {
     background: var(--bg-card);
-    font-size: 32px;
     padding: 0px 10px;
     border-radius: 5px;
     border: none;
@@ -116,6 +121,7 @@ h1 {
 }
 
 /* Modal Syling */
+
 .add-modal {
     opacity: 0;
 }
@@ -131,7 +137,6 @@ h1 {
     padding: 50px;
     border: 3px solid rgba(35, 35, 59, 0.872);
     border-radius: 10px;
-    font-size: 24px;
     gap: 20px;
 }
 
@@ -183,10 +188,6 @@ h1 {
     background: #28282772;
 }
 
-.radio-yes {
-    background-image: url(./icons/book-icon-black.svg) Im !important;
-    width: 100px;
-    height: 100px;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-}
+
+
+/* ---  */
