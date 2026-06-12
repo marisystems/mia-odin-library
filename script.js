@@ -71,13 +71,16 @@ function displayBookInfo(datasetId) {
 
     // Using the id get the corresponding book
     myLibrary.forEach( (book) => {
-    if (datasetId === book.id) {
-        console.log("Aaaa")
-    } else {
-        console.log("Book not found")
-        return
-    }
-});
+        if (datasetId === book.id) {
+            titleDisplay.textContent = book.title;
+            authorDisplay.textContent = book.author;
+            pagesDisplay.textContent = book.pages;
+            readDisplay.textContent = book.read;
+            // Add cover here
+        }
+
+    });
+
     // Display on the fields the information about the book
 }
 
