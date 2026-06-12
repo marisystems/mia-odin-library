@@ -82,12 +82,23 @@ body {
     
 }
 
+.display-entry {
+    display: flex;
+    gap: 10px;
+}
+
 .add-book {
     background: var(--bg-card);
     padding: 0px 10px;
     border-radius: 5px;
     border: none;
     align-self: flex-end;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.add-book:hover {
+    transform: scale(1.05);
 }
 
 .bottom {
@@ -106,6 +117,12 @@ body {
     height: 180px;
     border-radius: 8px;
     background: var(--bg-card);
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.book-card:hover {
+    transform: scale(1.02) rotate(1deg);
 }
 
 .book-card-wrapper {
@@ -187,7 +204,5 @@ body {
 .add-modal::backdrop {
     background: #28282772;
 }
-
-
 
 /* ---  */

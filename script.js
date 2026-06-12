@@ -35,66 +35,97 @@ function getDatafromForm() {
     addBookToLibrary(title, author, pages, read, cover);
 }
 
-function clearForm() {
-
-}
-
 // Add function to iterate over books in array and display
 // them on the page
 function displayBooks(library) {
+    let bookGrid = document.querySelector(".bottom");
+    // Clear all the previous entries
+    bookGrid.innerHTML = "";
 
     library.forEach( (book)=> {
 
         // Build the book card html elements dynamically
-        let cardWrapper = document.createElement("div")
-        cardWrapper.classList.add ("book-card-wrapper");
+        let cardWrapper = document.createElement("div");
+        cardWrapper.classList.add("book-card-wrapper");        
 
-        let card = document.createElement("div")
-        card.classList.add ("book-card")
+        let card = document.createElement("div");
+        card.classList.add ("book-card");
+        card.dataset.id = book.id;
 
-        let title = document.createElement("p")
+        let title = document.createElement("p");
         title.textContent = book.title;
 
         cardWrapper.appendChild(card);
-        cardWrapper.appendChild(title)
-        bookGrid.appendChild(cardWrapper)
+        cardWrapper.appendChild(title);
+        bookGrid.appendChild(cardWrapper);
     })
     
 }
 
-addBookToLibrary("Wuthering Heights", "sus", 210, true)
-addBookToLibrary("Fahrenheit 451", "sus", 210, true)
-addBookToLibrary("Some cool book", "sus", 210, true)
+function displayBookInfo(datasetId) {
+    let titleDisplay = document.querySelector("#title-display")
+    let authorDisplay = document.querySelector("#author-display")
+    let pagesDisplay = document.querySelector("#pages-display")
+    let readDisplay = document.querySelector("#read-display")
+    let coverDisplay = document.querySelector(".cover")
 
-let bookGrid = document.querySelector(".bottom")
-displayBooks(myLibrary)
+    // Using the id get the corresponding book
+    myLibrary.forEach( (book) => {
+    if (datasetId === book.id) {
+        console.log("Aaaa")
+    } else {
+        console.log("Book not found")
+        return
+    }
+});
+    // Display on the fields the information about the book
+}
+
+addBookToLibrary("Wuthering Heights", "sus", 210, true);
+addBookToLibrary("Fahrenheit 451", "sus", 210, true);
+addBookToLibrary("Some cool book", "sus", 210, true);
+
+
+displayBooks(myLibrary);
 
 // Modal
 let addBook = document.querySelector(".add-book");
-let addModal = document.querySelector(".add-modal");
+let dialogElement = document.querySelector("dialog");
 let closeModal = document.querySelector(".close-modal");
 
 
 // Open the add book modal
 addBook.addEventListener("click", () => { 
-    addModal.showModal();
+    dialogElement.showModal();
 });
 // Close the add book modal
-closeModal.addEventListener("click", (e) => {
-    
+closeModal.addEventListener("click", (e) => { 
     e.preventDefault();
     let form = document.querySelector("#add-book-form");
     if (!form.checkValidity()) {
         form.reportValidity();
         return
     }
-
     // Extract info and update
     getDatafromForm();
     displayBooks(myLibrary);
 
-    // Clear the fields after getting the info
+    // Clear the fields after getting the info and close modal
     form.reset();
+    dialogElement.close();
+
+
     console.log(myLibrary)
+})
+
+let bookGrid = document.querySelector(".bottom");
+
+bookGrid.addEventListener("click", (event)  => {
+    if (event.target.className == "book-card") {
+        let datasetId = event.target.dataset.id
+        displayBookInfo(datasetId);
+    }
+
+    // displayBookInfo(even)
 })
 

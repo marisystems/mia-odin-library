@@ -10,6 +10,7 @@
 </head>
 <body>
     <dialog class="add-modal">
+        <div class="modal-container">
         <form id="add-book-form">
 
             <div class="entry">
@@ -60,6 +61,7 @@
             </div>
 
         </form>
+    </div>
     </dialog>
 
     <div class="layout">
@@ -67,10 +69,22 @@
         <div class="upper">
             <div class="cover"></div>
             <div class="book-info">
-                <p>Title:</p>
-                <p>Author:</p>
-                <p>Pages:</p>
-                <p>Read:</p>
+                <div class="display-entry">
+                    <p>Title:</p>
+                    <p id="title-display">Test</p>
+                </div>
+                <div class="display-entry">
+                    <p>Author:</p>
+                    <p id="author-display">Test</p>
+                </div>
+                <div class="display-entry">
+                    <p>Pages:</p>
+                    <p id="pages-display">Test</p>
+                </div>
+                <div class="display-entry">
+                    <p>Read:</p>
+                    <p id="read-display">Test</p>
+                </div>
             </div>
             <button class="add-book">
                 <img src="./icons/add.svg" alt=""
