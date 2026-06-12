@@ -46,14 +46,18 @@ function displayBooks(library) {
 
         // Build the book card html elements dynamically
         let cardWrapper = document.createElement("div");
-        cardWrapper.classList.add("book-card-wrapper");        
+        cardWrapper.classList.add("book-card-wrapper");
 
         let card = document.createElement("div");
         card.classList.add ("book-card");
         card.dataset.id = book.id;
+        card.style.backgroundImage = `url(${book.cover})`
+        card.style.backgroundSize = "contain"
+        
 
         let title = document.createElement("p");
         title.textContent = book.title;
+        title.style.fontSize = "16px";
 
         cardWrapper.appendChild(card);
         cardWrapper.appendChild(title);
@@ -63,11 +67,12 @@ function displayBooks(library) {
 }
 
 function displayBookInfo(datasetId) {
-    let titleDisplay = document.querySelector("#title-display")
-    let authorDisplay = document.querySelector("#author-display")
-    let pagesDisplay = document.querySelector("#pages-display")
-    let readDisplay = document.querySelector("#read-display")
-    let coverDisplay = document.querySelector(".cover")
+    let titleDisplay = document.querySelector("#title-display");
+    let authorDisplay = document.querySelector("#author-display");
+    let pagesDisplay = document.querySelector("#pages-display");
+    let readDisplay = document.querySelector("#read-display");
+    let coverDisplay = document.querySelector(".cover");
+    
 
     // Using the id get the corresponding book
     myLibrary.forEach( (book) => {
@@ -76,20 +81,13 @@ function displayBookInfo(datasetId) {
             authorDisplay.textContent = book.author;
             pagesDisplay.textContent = book.pages;
             readDisplay.textContent = book.read;
-            // Add cover here
+            console.log(book.cover);
+            coverDisplay.style.backgroundImage = `url(${book.cover})`;
+            coverDisplay.style.backgroundSize = "contain"
         }
-
     });
 
-    // Display on the fields the information about the book
 }
-
-addBookToLibrary("Wuthering Heights", "sus", 210, true);
-addBookToLibrary("Fahrenheit 451", "sus", 210, true);
-addBookToLibrary("Some cool book", "sus", 210, true);
-
-
-displayBooks(myLibrary);
 
 // Modal
 let addBook = document.querySelector(".add-book");
@@ -132,3 +130,16 @@ bookGrid.addEventListener("click", (event)  => {
     // displayBookInfo(even)
 })
 
+// Add some default books
+addBookToLibrary("Wuthering Heights", 
+    "Emily Brontë", 416, false, './covers/wuthering.jpg');
+addBookToLibrary("Fahrenheit 451", 
+    "Ray Bradbury", 216, true, "./covers/fahrenheit451.jpg");
+addBookToLibrary("O pequeno príncipe", 
+    "Antonie de Saint-Exupéry", 96, true, "./covers/opequenoprincipe.jpg");
+addBookToLibrary("Flowers to Algernon", 
+    "Daniel Keyes", 218, false, "./covers/flowerstoalgernon.jpg");
+addBookToLibrary("Casas estranhas", 
+    "Uketsu", 176, false, "./covers/casasestranhas.jpg");
+
+displayBooks(myLibrary);
