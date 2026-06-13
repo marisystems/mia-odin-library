@@ -29,10 +29,17 @@ function getDatafromForm() {
     let title = document.querySelector("#title").value;
     let author = document.querySelector("#author").value;
     let pages = document.querySelector("#pages").value;
-    let cover = document.querySelector("#cover-img").value;
     let read = document.querySelector("#radio-yes").checked;
+    let cover = document.querySelector("#cover-img").files;
 
-    addBookToLibrary(title, author, pages, read, cover);
+    let coverURL
+    const reader = new FileReader();
+    reader.readAsDataURL(cover[0]);
+    reader.addEventListener("load", () => {
+        coverURL = reader.result;
+    })
+
+    addBookToLibrary(title, author, pages, read, coverURL);
 }
 
 // Add function to iterate over books in array and display
@@ -81,6 +88,8 @@ function displayBookInfo(datasetId) {
             authorDisplay.textContent = book.author;
             pagesDisplay.textContent = book.pages;
             readDisplay.textContent = book.read;
+
+            // DISCOVER WHY FILE PICKER FILES DONT WORK
             console.log(book.cover);
             coverDisplay.style.backgroundImage = `url(${book.cover})`;
             coverDisplay.style.backgroundSize = "contain"
