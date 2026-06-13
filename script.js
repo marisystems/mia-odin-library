@@ -1,5 +1,23 @@
 const myLibrary = [];
 
+// Make all query selectors accessible globally
+// Form
+let formTitle = document.querySelector("#title").value;
+let formAuthor = document.querySelector("#author").value;
+let formPages = document.querySelector("#pages").value;
+let formRead = document.querySelector("#radio-yes").checked;
+let formCover = document.querySelector("#cover-img").files;
+
+// Info Display
+let infoTitle = document.querySelector("#title-display");
+let infoAuthor = document.querySelector("#author-display");
+let infoPages = document.querySelector("#pages-display");
+let infoRead = document.querySelector("#read-display");
+let infoCover = document.querySelector(".cover");
+
+// Grid Display
+let bookGrid = document.querySelector(".bottom");
+
 function Book(title, author, pages, read, cover) {
     this.title = title;
     this.author = author;
@@ -24,28 +42,10 @@ function addBookToLibrary(title, author, pages, read, cover) {
 }
 
 function getDatafromForm() {
-    // Kind of dumb way to do it, but I was getting tripped up
-    // with the nodelist from querySelectorAll
-    let title = document.querySelector("#title").value;
-    let author = document.querySelector("#author").value;
-    let pages = document.querySelector("#pages").value;
-    let read = document.querySelector("#radio-yes").checked;
-    let cover = document.querySelector("#cover-img").files;
-
-    let coverURL
-    const reader = new FileReader();
-    reader.readAsDataURL(cover[0]);
-    reader.addEventListener("load", () => {
-        coverURL = reader.result;
-    })
-
-    addBookToLibrary(title, author, pages, read, coverURL);
+    addBookToLibrary(formTitle, formAuthor, formPages, formRead, formCover);
 }
 
-// Add function to iterate over books in array and display
-// them on the page
 function displayBooks(library) {
-    let bookGrid = document.querySelector(".bottom");
     // Clear all the previous entries
     bookGrid.innerHTML = "";
 
@@ -128,15 +128,13 @@ closeModal.addEventListener("click", (e) => {
     console.log(myLibrary)
 })
 
-let bookGrid = document.querySelector(".bottom");
 
+// Get book info
 bookGrid.addEventListener("click", (event)  => {
     if (event.target.className == "book-card") {
         let datasetId = event.target.dataset.id
         displayBookInfo(datasetId);
     }
-
-    // displayBookInfo(even)
 })
 
 // Add some default books
