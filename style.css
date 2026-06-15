@@ -161,6 +161,27 @@ body {
     opacity: 1;
 }
 
+/* Toggle read button */
+.toggle-read {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #181818;
+    border-radius: 5px;
+    padding: 3px;
+    opacity: 0;
+}
+
+.toggle-read:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.book-card:hover ~ .toggle-read {
+    opacity: 1;
+}
+
+
 /* Modal Syling */
 
 .add-modal {

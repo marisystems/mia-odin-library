@@ -25,7 +25,7 @@ function Book(title, author, pages, read, cover) {
     if (read) {
         this.read = "read";
     } else {
-        this.read = "not read yet";
+        this.read = "not read";
     }
     this.info = function() {
         return `${this.title} by ${this.author}. ${this.pages} pages, ${this.read}.`;
@@ -89,15 +89,20 @@ function displayBooks(library) {
         title.textContent = book.title;
         title.style.fontSize = "16px";
 
+        cardWrapper.style.position = "relative";
         // Button to remove the book from the collection
         let remove = document.createElement("img");
         remove.src = "./icons/delete.svg"
         remove.classList.add("remove-button");
-  
-        cardWrapper.style.position = "relative";
+
+        // Button to toggle read status for the book
+        let toggleRead = document.createElement("img");
+        toggleRead.src = './icons/read.svg';
+        toggleRead.classList.add("toggle-read");
 
         cardWrapper.appendChild(card);
         cardWrapper.appendChild(remove);
+        cardWrapper.appendChild(toggleRead)
         cardWrapper.appendChild(title);
         bookGrid.appendChild(cardWrapper);
     })
@@ -149,6 +154,20 @@ function removeBook(datasetId) {
 
 }
 
+function toggleRead(datasetId) {
+     myLibrary.forEach( (book, index) => {
+        if (datasetId === book.id) {
+            if (book.read == "read") {
+                book.read = "not read"
+            } else {
+                book.read = "read";
+            }
+            displayBookInfo(book.id)
+        }
+      
+    });
+}
+
 // Open the add book modal
 addBook.addEventListener("click", () => { 
     dialogElement.showModal();
@@ -173,7 +192,6 @@ closeModal.addEventListener("click", (e) => {
 
     console.log(myLibrary)
 })
-
 
 
 // Add some default books
@@ -204,6 +222,13 @@ bookGrid.addEventListener("click", (event)  => {
     if (event.target.className == "remove-button") {
         let id = event.target.previousSibling.dataset.id;
         removeBook(id)
+    }
+
+    if (event.target.className == "toggle-read") {
+        // Have to chain previousSibling twice because of DOM position
+        let a = event.target.previousSibling.previousSibling;
+        let id = a.dataset.id;
+        toggleRead(id);
     }
 })
 
