@@ -1,13 +1,5 @@
 const myLibrary = [];
 
-// Make all query selectors accessible globally
-// Form
-let formTitle = document.querySelector("#title").value;
-let formAuthor = document.querySelector("#author").value;
-let formPages = document.querySelector("#pages").value;
-let formRead = document.querySelector("#radio-yes").checked;
-let formCover = document.querySelector("#cover-img").files;
-
 // Info Display
 let infoTitle = document.querySelector("#title-display");
 let infoAuthor = document.querySelector("#author-display");
@@ -42,7 +34,24 @@ function addBookToLibrary(title, author, pages, read, cover) {
 }
 
 function getDatafromForm() {
+    let formTitle = document.querySelector("#title").value;
+    let formAuthor = document.querySelector("#author").value;
+    let formPages = document.querySelector("#pages").value;
+    let formRead = document.querySelector("#radio-yes").checked;
+    let formCover = document.querySelector("#cover-img").files;
     addBookToLibrary(formTitle, formAuthor, formPages, formRead, formCover);
+}
+
+function loadImg(input, display) {
+    // Generic function to load a file picker image
+    const reader = new FileReader();
+    reader.readAsDataURL(input[0]);
+
+    reader.addEventListener("load", () => {
+        const img = reader.result;
+        display.style.backgroundImage = `url(${img})`;
+    })
+
 }
 
 function displayBooks(library) {
@@ -58,9 +67,19 @@ function displayBooks(library) {
         let card = document.createElement("div");
         card.classList.add ("book-card");
         card.dataset.id = book.id;
-        card.style.backgroundImage = `url(${book.cover})`
+
+        // Check if file is a blob instead of a local file
+        // So I can handle both file picker files and local ones
+        if (typeof book.cover === 'string') {
+            console.log(`${book.title} cover is a local file`)
+            card.style.backgroundImage = `url(${book.cover})`  
+        } else {
+            console.log(`${book.title} cover is a FileReader file`)
+            loadImg(book.cover, card);
+        }
+
         card.style.backgroundSize = "contain"
-        
+        card.style.backgroundRepeat = "no-repeat"
 
         let title = document.createElement("p");
         title.textContent = book.title;
@@ -89,14 +108,23 @@ function displayBookInfo(datasetId) {
             pagesDisplay.textContent = book.pages;
             readDisplay.textContent = book.read;
 
-            // DISCOVER WHY FILE PICKER FILES DONT WORK
             console.log(book.cover);
-            coverDisplay.style.backgroundImage = `url(${book.cover})`;
-            coverDisplay.style.backgroundSize = "contain"
+
+            if (typeof book.cover === 'string') {
+                console.log(`${book.title} cover is a local file`)
+                coverDisplay.style.backgroundImage = `url(${book.cover})`  
+            } else {
+                console.log(`${book.title} cover is a FileReader file`)
+                loadImg(book.cover, coverDisplay);
+            }
+
+            coverDisplay.style.backgroundSize = "contain";
+            coverDisplay.style.backgroundRepeat = "no-repeat";
         }
     });
 
 }
+
 
 // Modal
 let addBook = document.querySelector(".add-book");
@@ -128,7 +156,6 @@ closeModal.addEventListener("click", (e) => {
     console.log(myLibrary)
 })
 
-
 // Get book info
 bookGrid.addEventListener("click", (event)  => {
     if (event.target.className == "book-card") {
@@ -150,3 +177,4 @@ addBookToLibrary("Casas estranhas",
     "Uketsu", 176, false, "./covers/casasestranhas.jpg");
 
 displayBooks(myLibrary);
+console.log(myLibrary)
