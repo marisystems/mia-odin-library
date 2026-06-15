@@ -78,7 +78,7 @@ function displayBooks(library) {
             loadImg(book.cover, card);
         }
 
-        card.style.backgroundSize = "contain"
+        card.style.backgroundSize = "cover"
         card.style.backgroundRepeat = "no-repeat"
 
         let title = document.createElement("p");
