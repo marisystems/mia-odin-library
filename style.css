@@ -128,13 +128,37 @@ body {
 .book-card-wrapper {
     max-width: 120px;
     max-height: 180px;
-
 }
 
 .book-card-wrapper p {
     text-wrap: nowrap;
     overflow:hidden;
     text-overflow: ellipsis;
+}
+
+/* Remove button */
+.remove-button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: #181818;
+    border-radius: 5px;
+    padding: 3px;
+    opacity: 0;
+}
+
+.remove-button:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.book-card:hover + .remove-button {
+    opacity: 1;
+}
+
+
+.remove-button-show {
+    opacity: 1;
 }
 
 /* Modal Syling */
@@ -206,3 +230,9 @@ body {
 }
 
 /* ---  */
+
+.test-button {
+    width: 100px;
+    height: 100px;
+
+}

@@ -10,6 +10,12 @@ let infoCover = document.querySelector(".cover");
 // Grid Display
 let bookGrid = document.querySelector(".bottom");
 
+// Modal
+let addBook = document.querySelector(".add-book");
+let dialogElement = document.querySelector("dialog");
+let closeModal = document.querySelector(".close-modal");
+
+
 function Book(title, author, pages, read, cover) {
     this.title = title;
     this.author = author;
@@ -71,10 +77,8 @@ function displayBooks(library) {
         // Check if file is a blob instead of a local file
         // So I can handle both file picker files and local ones
         if (typeof book.cover === 'string') {
-            console.log(`${book.title} cover is a local file`)
             card.style.backgroundImage = `url(${book.cover})`  
         } else {
-            console.log(`${book.title} cover is a FileReader file`)
             loadImg(book.cover, card);
         }
 
@@ -85,7 +89,15 @@ function displayBooks(library) {
         title.textContent = book.title;
         title.style.fontSize = "16px";
 
+        // Button to remove the book from the collection
+        let remove = document.createElement("img");
+        remove.src = "./icons/delete.svg"
+        remove.classList.add("remove-button");
+  
+        cardWrapper.style.position = "relative";
+
         cardWrapper.appendChild(card);
+        cardWrapper.appendChild(remove);
         cardWrapper.appendChild(title);
         bookGrid.appendChild(cardWrapper);
     })
@@ -98,9 +110,7 @@ function displayBookInfo(datasetId) {
     let pagesDisplay = document.querySelector("#pages-display");
     let readDisplay = document.querySelector("#read-display");
     let coverDisplay = document.querySelector(".cover");
-    
 
-    // Using the id get the corresponding book
     myLibrary.forEach( (book) => {
         if (datasetId === book.id) {
             titleDisplay.textContent = book.title;
@@ -108,13 +118,9 @@ function displayBookInfo(datasetId) {
             pagesDisplay.textContent = book.pages;
             readDisplay.textContent = book.read;
 
-            console.log(book.cover);
-
             if (typeof book.cover === 'string') {
-                console.log(`${book.title} cover is a local file`)
                 coverDisplay.style.backgroundImage = `url(${book.cover})`  
             } else {
-                console.log(`${book.title} cover is a FileReader file`)
                 loadImg(book.cover, coverDisplay);
             }
 
@@ -122,20 +128,32 @@ function displayBookInfo(datasetId) {
             coverDisplay.style.backgroundRepeat = "no-repeat";
         }
     });
-
 }
 
+function removeBook(datasetId) {
+    myLibrary.forEach( (book, index) => {
+        if (datasetId === book.id) {
+            console.log(index);
+            console.log(datasetId);
+            myLibrary.splice(index, 1);
+        }
+    });
 
-// Modal
-let addBook = document.querySelector(".add-book");
-let dialogElement = document.querySelector("dialog");
-let closeModal = document.querySelector(".close-modal");
+    // So we update the visuals
+    displayBooks(myLibrary)
 
+    // Stop trying to diplay when the library is empty
+    if (myLibrary.length !== 0) {
+        displayBookInfo(myLibrary[0].id)
+    }
+
+}
 
 // Open the add book modal
 addBook.addEventListener("click", () => { 
     dialogElement.showModal();
 });
+
 // Close the add book modal
 closeModal.addEventListener("click", (e) => { 
     e.preventDefault();
@@ -156,13 +174,7 @@ closeModal.addEventListener("click", (e) => {
     console.log(myLibrary)
 })
 
-// Get book info
-bookGrid.addEventListener("click", (event)  => {
-    if (event.target.className == "book-card") {
-        let datasetId = event.target.dataset.id
-        displayBookInfo(datasetId);
-    }
-})
+
 
 // Add some default books
 addBookToLibrary("Wuthering Heights", 
@@ -177,5 +189,25 @@ addBookToLibrary("Casas estranhas",
     "Uketsu", 176, false, "./covers/casasestranhas.jpg");
 
 displayBooks(myLibrary);
-displayBookInfo(myLibrary[1].id)
+displayBookInfo(myLibrary[0].id)
 console.log(myLibrary)
+
+// This has to come later, after the remove button exists in the DOM
+// Remove the book for each remove button
+// Handle the modals inside the Book Grid
+bookGrid.addEventListener("click", (event)  => {
+    if (event.target.className == "book-card") {
+        let datasetId = event.target.dataset.id
+        displayBookInfo(datasetId);
+    }
+
+    if (event.target.className == "remove-button") {
+        let id = event.target.previousSibling.dataset.id;
+        removeBook(id)
+    }
+})
+
+let testButton = document.querySelector(".test-button")
+testButton.addEventListener("click", () => {
+    console.log*(myLibrary)
+})
