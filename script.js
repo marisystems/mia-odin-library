@@ -118,7 +118,7 @@ function displayBookInfo(datasetId) {
                 loadImg(book.cover, coverDisplay);
             }
 
-            coverDisplay.style.backgroundSize = "contain";
+            coverDisplay.style.backgroundSize = "cover";
             coverDisplay.style.backgroundRepeat = "no-repeat";
         }
     });
@@ -177,4 +177,5 @@ addBookToLibrary("Casas estranhas",
     "Uketsu", 176, false, "./covers/casasestranhas.jpg");
 
 displayBooks(myLibrary);
+displayBookInfo(myLibrary[1].id)
 console.log(myLibrary)
